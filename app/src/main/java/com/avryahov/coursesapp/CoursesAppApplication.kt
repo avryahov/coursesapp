@@ -1,1 +1,17 @@
-// Auto-generated stub for com/avryahov/coursesapp/CoursesAppApplication.kt
+package com.avryahov.coursesapp;
+
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+import timber.log.Timber
+
+@HiltAndroidApp
+class CoursesAppApplication : Application() {
+
+    override fun onCreate() {
+        super.onCreate()
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
+    }
+}

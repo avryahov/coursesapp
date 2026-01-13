@@ -41,15 +41,19 @@ android {
 
     buildFeatures {
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        buildConfig = true
     }
 
     packaging {
         resources.excludes.add("META-INF/AL2.0")
         resources.excludes.add("META-INF/LGPL2.1")
+    }
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        kotlinOptions {
+            freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
+            freeCompilerArgs += "-opt-in=kotlin.Experimental"
+        }
     }
 }
 
@@ -74,18 +78,21 @@ dependencies {
     ksp(libs.hilt.compiler)
 
     // === Jetpack Compose ===
-    implementation(platform(libs.androidx.compose.bom)) // ← BOM управляет всеми версиями Compose
+    val composeBom = platform(libs.androidx.compose.bom)
 
     implementation(libs.androidx.activity.compose)
+    implementation(composeBom)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui.util)
     implementation(libs.androidx.navigation.compose)
 
     // Tooling (только в debug)
+    debugImplementation(composeBom)
     debugImplementation(libs.androidx.compose.ui.tooling.preview)
 
     // === Тестирование: Unit Tests (JVM) ===
-    testImplementation(libs.junit)
+    testImplementation(composeBom)
+    testImplementation(libs.junit4)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.turbine) // для тестирования Flow/StateFlow
     testImplementation(libs.google.truth)
@@ -97,8 +104,8 @@ dependencies {
     kspTest(libs.hilt.compiler)
 
     // === Тестирование: Instrumented Tests (Android) ===
-    androidTestImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(composeBom)
+    androidTestImplementation(libs.junit4)
     androidTestImplementation(libs.androidx.test.espresso.core)
     androidTestImplementation(libs.androidx.compose.ui.test.junit)
 

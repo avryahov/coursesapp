@@ -1,13 +1,20 @@
 package com.avryahov.coursesapp.navigation
 
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.avryahov.coursesapp.component.navigationbar.BottomNavigationBar
 import com.avryahov.coursesapp.presentation.auth.LoginScreen
 import com.avryahov.coursesapp.presentation.auth.RegistrationScreen
 import com.avryahov.coursesapp.presentation.course.CourseScreen
@@ -18,53 +25,93 @@ import com.avryahov.coursesapp.presentation.profile.ProfileScreen
 
 @Composable
 fun CoursesAppNavGraph(
-    navController: NavHostController = rememberNavController(),
-    startDestination: String = CoursesAppDestinations.ONBOARDING_ROUTE,
-    navActions: CoursesAppNavigationActions = remember(navController) {
-        CoursesAppNavigationActions(
-            navController
-        )
-    }
+    navController: NavHostController = rememberNavController()
 ) {
-    NavHost(
-        navController = navController,
-        startDestination = startDestination
-    ) {
-        composable(CoursesAppDestinations.ONBOARDING_ROUTE) { OnboardingScreen(onContinueClick = {}) }
-        composable(CoursesAppDestinations.REGISTRATION_ROUTE) {
-            RegistrationScreen(
-                onLoginClick = {},
-                onRegistrationSuccess = {})
-        }
-        composable(CoursesAppDestinations.LOGIN_ROUTE) {
-            LoginScreen(
-                onRegistrationClick = {},
-                onLoginSuccess = {})
-        }
-        composable(CoursesAppDestinations.HOME_ROUTE) {
-            HomeScreen { courseId ->
-                println("Clicked course: $courseId")
+    val navActions = remember(navController) {
+        CoursesAppNavigationActions(navController)
+    }
+
+    val currentRoute by navController.currentBackStackEntryAsState()
+    val route = currentRoute?.destination?.route
+
+    Scaffold(
+        bottomBar = {
+            if (shouldShowBottomBar(route)) {
+                BottomNavigationBar(
+                    navController = navController,
+                    onNavigateToHome = { navActions.navigateToHome() },
+                    onNavigateToFavourite = { navActions.navigateToFavourite() },
+                    onNavigateToProfile = { navActions.navigateToProfile() }
+                )
             }
         }
-        composable(CoursesAppDestinations.FAVOURITE_ROUTE) { FavouriteScreen() }
-        composable(CoursesAppDestinations.PROFILE_ROUTE) { ProfileScreen() }
-        composable(
-            route = CoursesAppDestinations.COURSE_ROUTE,
-            arguments = listOf(navArgument(CoursesAppDestinationsArgs.COURSE_ID_ARG) {
-                type =
-                    NavType.StringType
-                nullable = true
-            })
-        ) { entry ->
-            val courseId = entry.arguments?.getString(CoursesAppDestinationsArgs.COURSE_ID_ARG)
-                ?: error("courseId was required")
+    ) { padding: PaddingValues ->
+        NavHost(
+            navController = navController,
+            startDestination = CoursesAppDestinations.HOME_ROUTE,
+            modifier = Modifier.padding(padding)
+        ) {
+            composable(CoursesAppDestinations.ONBOARDING_ROUTE) {
+                OnboardingScreen(onContinueClick = {
+                    navController.navigate(CoursesAppDestinations.REGISTRATION_ROUTE)
+                })
+            }
+            composable(CoursesAppDestinations.REGISTRATION_ROUTE) {
+                RegistrationScreen(
+                    onLoginClick = { navController.navigate(CoursesAppDestinations.LOGIN_ROUTE) },
+                    onRegistrationSuccess = {
+                        navController.navigate(CoursesAppDestinations.HOME_ROUTE) {
+                            popUpTo(CoursesAppDestinations.ONBOARDING_ROUTE) { inclusive = true }
+                        }
+                    }
+                )
+            }
+            composable(CoursesAppDestinations.LOGIN_ROUTE) {
+                LoginScreen(
+                    onRegistrationClick = { navController.navigate(CoursesAppDestinations.REGISTRATION_ROUTE) },
+                    onLoginSuccess = {
+                        navController.navigate(CoursesAppDestinations.HOME_ROUTE) {
+                            popUpTo(CoursesAppDestinations.ONBOARDING_ROUTE) { inclusive = true }
+                        }
+                    }
+                )
+            }
+            composable(CoursesAppDestinations.HOME_ROUTE) {
+                HomeScreen(navController) { courseId ->
+                    navActions.navigateToCourse(courseId)
+                }
+            }
+            composable(CoursesAppDestinations.FAVOURITE_ROUTE) {
+                FavouriteScreen(navController)
+            }
+            composable(CoursesAppDestinations.PROFILE_ROUTE) {
+                ProfileScreen(navController)
+            }
+            composable(
+                route = CoursesAppDestinations.COURSE_ROUTE,
+                arguments = listOf(navArgument(CoursesAppDestinationsArgs.COURSE_ID_ARG) {
+                    type = NavType.StringType
+                    nullable = true
+                })
+            ) { entry ->
+                val courseId = entry.arguments?.getString(CoursesAppDestinationsArgs.COURSE_ID_ARG)
+                    ?: error("courseId was required")
 
-            CourseScreen(
-                courseId,
-                onBackClick = { navActions.popBackStack() })
+                CourseScreen(
+                    courseId = courseId,
+                    onBackClick = { navActions.popBackStack() },
+                    navController = navController
+                )
+            }
         }
-
     }
+}
 
-
+private fun shouldShowBottomBar(route: String?): Boolean {
+    if (route == null) return false
+    return setOf(
+        CoursesAppDestinations.HOME_ROUTE,
+        CoursesAppDestinations.FAVOURITE_ROUTE,
+        CoursesAppDestinations.PROFILE_ROUTE
+    ).contains(route) || route.startsWith("course/")
 }

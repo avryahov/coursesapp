@@ -3,7 +3,6 @@ package com.avryahov.coursesapp.navigation
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 
-
 /**
  * Screens used in [CoursesAppDestinations]
  */
@@ -34,16 +33,24 @@ object CoursesAppDestinations {
     const val HOME_ROUTE = CoursesAppScreens.HOME_SCREEN
     const val FAVOURITE_ROUTE = CoursesAppScreens.FAVOURITE_SCREEN
     const val PROFILE_ROUTE = CoursesAppScreens.PROFILE_SCREEN
-
     const val COURSE_ROUTE =
-        "${CoursesAppScreens.COURSE_SCREEN}/${CoursesAppDestinationsArgs.COURSE_ID_ARG}"
+        "${CoursesAppScreens.COURSE_SCREEN}/{${CoursesAppDestinationsArgs.COURSE_ID_ARG}}"
 }
-
 
 /**
  * Models the navigation actions in the app.
  */
 class CoursesAppNavigationActions(private val navController: NavHostController) {
+
+    private fun navigateTo(route: String) {
+        navController.navigate(route) {
+            popUpTo(navController.graph.findStartDestination().id) {
+                saveState = true
+            }
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
 
     fun navigateToRegistration() {
         navController.navigate(CoursesAppDestinations.REGISTRATION_ROUTE)
@@ -54,23 +61,19 @@ class CoursesAppNavigationActions(private val navController: NavHostController) 
     }
 
     fun navigateToHome() {
-        navController.navigate(CoursesAppDestinations.HOME_ROUTE) {
-            popUpTo(navController.graph.findStartDestination().id) {
-                inclusive = true;
-            }
-        }
+        navigateTo(CoursesAppDestinations.HOME_ROUTE)
     }
 
     fun navigateToFavourite() {
-        navController.navigate(CoursesAppDestinations.FAVOURITE_ROUTE)
+        navigateTo(CoursesAppDestinations.FAVOURITE_ROUTE)
     }
 
     fun navigateToProfile() {
-        navController.navigate(CoursesAppDestinations.PROFILE_ROUTE)
+        navigateTo(CoursesAppDestinations.PROFILE_ROUTE)
     }
 
     fun navigateToCourse(courseId: String) {
-        navController.navigate("${CoursesAppScreens.COURSE_SCREEN}/${courseId}")
+        navController.navigate("${CoursesAppScreens.COURSE_SCREEN}/$courseId")
     }
 
     fun popBackStack() {

@@ -38,7 +38,8 @@ fun BottomNavigationItem(
             contentDescription = item.label,
             onClick = onClick,
             containerColor = containerColor,
-            iconTint = iconTint
+            iconTint = iconTint,
+            modifier = modifier
         )
 
         Text(

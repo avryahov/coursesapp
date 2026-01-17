@@ -48,6 +48,17 @@
     <string name="social_vk_content_desc">Войти через Вконтакте</string>
     <string name="social_ok_content_desc">Войти через Одноклассники</string>
 
+    <!-- Login Screen -->
+    <string name="login_title">Вход</string>
+    <string name="no_account_yet">Нет аккаунта? </string>
+    <string name="register_action">Регистрация</string>
+    <string name="forgot_password">Забыл пароль</string>
+
+    <!-- Forgot Password Screen -->
+    <string name="forgot_password_title">Восстановление пароля</string>
+    <string name="forgot_password_message">Эта функция будет доступна в ближайшем обновлении.</string>
+    <string name="back_button">Назад</string>
+
     <!-- Error dialog -->
     <string name="error_invalid_credentials">Неверный логин или пароль</string>
     <string name="error_unknown">Произошла ошибка</string>

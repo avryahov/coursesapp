@@ -15,6 +15,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.avryahov.coursesapp.component.navigationbar.BottomNavigationBar
+import com.avryahov.coursesapp.presentation.auth.ForgotPasswordScreen
 import com.avryahov.coursesapp.presentation.auth.LoginScreen
 import com.avryahov.coursesapp.presentation.auth.RegistrationScreen
 import com.avryahov.coursesapp.presentation.course.CourseScreen
@@ -74,14 +75,23 @@ fun CoursesAppNavGraph(
 
             composable(CoursesAppDestinations.LOGIN_ROUTE) {
                 LoginScreen(
-                    onRegistrationClick = {
+                    onRegisterClick = {
                         navController.navigate(CoursesAppDestinations.REGISTRATION_ROUTE)
+                    },
+                    onForgotPasswordClick = {
+                        navController.navigate(CoursesAppDestinations.FORGOT_PASSWORD_ROUTE)
                     },
                     onLoginSuccess = {
                         navController.navigate(CoursesAppDestinations.HOME_ROUTE) {
                             popUpTo(CoursesAppDestinations.ONBOARDING_ROUTE) { inclusive = true }
                         }
                     }
+                )
+            }
+
+            composable(CoursesAppDestinations.FORGOT_PASSWORD_ROUTE) {
+                ForgotPasswordScreen(
+                    onBackClick = { navController.popBackStack() }
                 )
             }
 

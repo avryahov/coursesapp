@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,7 +40,8 @@ fun BottomNavigationItem(
             onClick = onClick,
             containerColor = containerColor,
             iconTint = iconTint,
-            modifier = modifier
+            modifier = Modifier
+                .size(80.dp, 36.dp)
         )
 
         Text(

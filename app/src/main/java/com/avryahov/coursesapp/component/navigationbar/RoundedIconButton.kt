@@ -23,18 +23,19 @@ fun RoundedIconButton(
     onClick: () -> Unit,
     containerColor: Color = Color.Transparent,
     iconTint: Color = MaterialTheme.colorScheme.onBackground,
-    width: Dp = 80.dp,
-    height: Dp = 36.dp,
     cornerRadius: Dp = 16.dp,
     iconSize: Dp = 28.dp,
     iconPadding: Dp = 2.dp,
-    modifier: Modifier
+    enabled: Boolean = true,
+    modifier: Modifier = Modifier
 ) {
     Surface(
         shape = RoundedCornerShape(cornerRadius),
         color = containerColor,
+        contentColor = iconTint,
         onClick = onClick,
-        modifier = modifier.size(width = width, height = height)
+        enabled = enabled,
+        modifier = modifier
     ) {
         Box(
             contentAlignment = Alignment.Center,

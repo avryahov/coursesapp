@@ -4,12 +4,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.avryahov.coursesapp.ui.theme.AppColors
 
 val RobotoFontFamily = FontFamily(
     Font(R.font.roboto_regular, FontWeight.Normal),
@@ -76,19 +76,19 @@ private val Typography = Typography(
 )
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Color(0xFF12B956),      // Green — кнопка
-    onPrimary = Color(0xFFFFFFFF),     // White — текст на кнопке
+    primary = AppColors.PrimaryGreen,
+    onPrimary = AppColors.OnPrimary,
 
-    secondary = Color(0xFF32333A),     // Dark gray — теги
-    onSecondary = Color(0xFFFFFFFF),   // White — текст на тегах
+    secondary = AppColors.SecondaryDark,
+    onSecondary = AppColors.OnSecondary,
 
-    background = Color(0xFF121212),    // Dark — фон
-    onBackground = Color(0xFFFFFFFF),  // White — текст на фоне
+    background = AppColors.BackgroundDark,
+    onBackground = AppColors.OnBackground,
 
-    surface = Color(0xFF121212),       // Surface — как фон
-    onSurface = Color(0xFFFFFFFF),     // White — текст на surface
+    surface = AppColors.BackgroundDark,
+    onSurface = AppColors.OnSurface,
 
-    outline = Color(0xFF71787C),        // Stroke — границы
+    outline = AppColors.Outline
 )
 
 /**
@@ -98,4 +98,3 @@ private val DarkColorScheme = darkColorScheme(
 fun CoursesAppTheme(content: @Composable () -> Unit) {
     MaterialTheme(colorScheme = DarkColorScheme, typography = Typography, content = content)
 }
-

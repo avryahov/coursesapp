@@ -34,4 +34,36 @@
     <string name="bottom_nav_home">Главная</string>
     <string name="bottom_nav_favourite">Избранное</string>
     <string name="bottom_nav_profile">Аккаунт</string>
+
+    <!-- Registration Screen -->
+    <string name="registration_title">Регистрация</string>
+    <string name="email_label">Email</string>
+    <string name="password_label">Пароль</string>
+    <string name="confirm_password_label">Повторить пароль</string>
+    <string name="email_placeholder">example@gmail.com</string>
+    <string name="password_placeholder">Введите пароль</string>
+    <string name="confirm_password_placeholder">Введите пароль ещё раз</string>
+    <string name="already_have_account">Уже есть аккаунт? </string>
+    <string name="login_action">Войти</string>
+    <string name="social_vk_content_desc">Войти через Вконтакте</string>
+    <string name="social_ok_content_desc">Войти через Одноклассники</string>
+
+    <!-- Login Screen -->
+    <string name="login_title">Вход</string>
+    <string name="no_account_yet">Нет аккаунта? </string>
+    <string name="register_action">Регистрация</string>
+    <string name="forgot_password">Забыл пароль</string>
+
+    <!-- Forgot Password Screen -->
+    <string name="forgot_password_title">Восстановление пароля</string>
+    <string name="forgot_password_message">Эта функция будет доступна в ближайшем обновлении.</string>
+    <string name="back_button">Назад</string>
+
+    <!-- Error dialog -->
+    <string name="error_invalid_credentials">Неверный логин или пароль</string>
+    <string name="error_unknown">Произошла ошибка</string>
+    <string name="error_title">Ошибка</string>
+    <string name="ok_button">OK</string>
+    <string name="error_email_invalid">Неверный формат email</string>
+    <string name="error_password_mismatch">Пароли не совпадают</string>
 </resources>

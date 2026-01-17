@@ -15,6 +15,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.avryahov.coursesapp.component.navigationbar.BottomNavigationBar
+import com.avryahov.coursesapp.presentation.auth.ForgotPasswordScreen
 import com.avryahov.coursesapp.presentation.auth.LoginScreen
 import com.avryahov.coursesapp.presentation.auth.RegistrationScreen
 import com.avryahov.coursesapp.presentation.course.CourseScreen
@@ -56,19 +57,30 @@ fun CoursesAppNavGraph(
                     navController.navigate(CoursesAppDestinations.REGISTRATION_ROUTE)
                 })
             }
+
             composable(CoursesAppDestinations.REGISTRATION_ROUTE) {
                 RegistrationScreen(
-                    onLoginClick = { navController.navigate(CoursesAppDestinations.LOGIN_ROUTE) },
+                    onLoginClick = {
+                        navController.navigate(CoursesAppDestinations.LOGIN_ROUTE) {
+                            popUpTo(CoursesAppDestinations.ONBOARDING_ROUTE) { inclusive = true }
+                        }
+                    },
                     onRegistrationSuccess = {
-                        navController.navigate(CoursesAppDestinations.HOME_ROUTE) {
+                        navController.navigate(CoursesAppDestinations.LOGIN_ROUTE) {
                             popUpTo(CoursesAppDestinations.ONBOARDING_ROUTE) { inclusive = true }
                         }
                     }
                 )
             }
+
             composable(CoursesAppDestinations.LOGIN_ROUTE) {
                 LoginScreen(
-                    onRegistrationClick = { navController.navigate(CoursesAppDestinations.REGISTRATION_ROUTE) },
+                    onRegisterClick = {
+                        navController.navigate(CoursesAppDestinations.REGISTRATION_ROUTE)
+                    },
+                    onForgotPasswordClick = {
+                        navController.navigate(CoursesAppDestinations.FORGOT_PASSWORD_ROUTE)
+                    },
                     onLoginSuccess = {
                         navController.navigate(CoursesAppDestinations.HOME_ROUTE) {
                             popUpTo(CoursesAppDestinations.ONBOARDING_ROUTE) { inclusive = true }
@@ -76,17 +88,27 @@ fun CoursesAppNavGraph(
                     }
                 )
             }
+
+            composable(CoursesAppDestinations.FORGOT_PASSWORD_ROUTE) {
+                ForgotPasswordScreen(
+                    onBackClick = { navController.popBackStack() }
+                )
+            }
+
             composable(CoursesAppDestinations.HOME_ROUTE) {
                 HomeScreen(navController) { courseId ->
                     navActions.navigateToCourse(courseId)
                 }
             }
+
             composable(CoursesAppDestinations.FAVOURITE_ROUTE) {
                 FavouriteScreen(navController)
             }
+
             composable(CoursesAppDestinations.PROFILE_ROUTE) {
                 ProfileScreen(navController)
             }
+
             composable(
                 route = CoursesAppDestinations.COURSE_ROUTE,
                 arguments = listOf(navArgument(CoursesAppDestinationsArgs.COURSE_ID_ARG) {

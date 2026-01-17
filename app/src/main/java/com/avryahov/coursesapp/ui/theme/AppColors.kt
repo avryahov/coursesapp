@@ -18,4 +18,8 @@ object AppColors {
 
     // Outline
     val Outline = Color(0xFF71787C)
+
+    // Social Networks
+    val VK = Color(0xFF4687F0)
+    val OK = Color(0xFFFF6F00)
 }

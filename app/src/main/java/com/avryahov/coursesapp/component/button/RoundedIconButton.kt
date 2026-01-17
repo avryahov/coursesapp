@@ -1,4 +1,4 @@
-package com.avryahov.coursesapp.component.navigationbar
+package com.avryahov.coursesapp.component.button
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

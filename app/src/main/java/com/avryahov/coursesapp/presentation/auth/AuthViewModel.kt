@@ -6,11 +6,14 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.avryahov.coursesapp.R
+import com.avryahov.coursesapp.data.model.AuthEffect
 import com.avryahov.coursesapp.data.model.AuthUser
 import com.avryahov.coursesapp.data.repository.AuthError
 import com.avryahov.coursesapp.data.repository.AuthRepository
 import com.avryahov.coursesapp.util.ValidationConstants
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -38,6 +41,13 @@ class AuthViewModel @Inject constructor(
     var uiState by mutableStateOf(AuthUiState())
         private set
 
+    val vkAuthUrl = "https://vk.com"
+    val okAuthUrl = "https://ok.ru"
+
+    private val _effect = MutableSharedFlow<AuthEffect>()
+    val effect = _effect.asSharedFlow()
+
+    // --- Getters for UI ---
     val email: String get() = registrationState.email
     val password: String get() = registrationState.password
     val confirmPassword: String get() = registrationState.confirmPassword
@@ -116,6 +126,18 @@ class AuthViewModel @Inject constructor(
                 }
                 uiState = uiState.copy(errorMessageResId = errorResId)
             }
+        }
+    }
+
+    fun onVkClick() {
+        viewModelScope.launch {
+            _effect.emit(AuthEffect.OpenSocialUrl(vkAuthUrl))
+        }
+    }
+
+    fun onOkClick() {
+        viewModelScope.launch {
+            _effect.emit(AuthEffect.OpenSocialUrl(okAuthUrl))
         }
     }
 }

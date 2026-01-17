@@ -1,4 +1,4 @@
-package com.avryahov.coursesapp;
+package com.avryahov.coursesapp
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
@@ -17,15 +17,16 @@ val RobotoFontFamily = FontFamily(
 )
 
 private val Typography = Typography(
-    // "Ag Headline 28/36"
+    // "Ag Headline 28/36" → Заголовок экрана (Onboarding, Home и др.)
     headlineLarge = TextStyle(
         fontFamily = RobotoFontFamily,
         fontWeight = FontWeight.Normal,
-        fontSize = 28.sp,
-        lineHeight = 36.sp,
+        fontSize = 36.sp,
+        lineHeight = 48.sp,
         letterSpacing = 0.sp
     ),
-    // "Ag Title large 22/28"
+
+    // "Ag Title large 22/28" → Крупные заголовки секций, кнопки с акцентом
     titleLarge = TextStyle(
         fontFamily = RobotoFontFamily,
         fontWeight = FontWeight.Medium,
@@ -33,7 +34,8 @@ private val Typography = Typography(
         lineHeight = 28.sp,
         letterSpacing = 0.sp
     ),
-    // "Ag Title medium 16/18"
+
+    // "Ag Title medium 16/18" → Подзаголовки, названия категорий
     titleMedium = TextStyle(
         fontFamily = RobotoFontFamily,
         fontWeight = FontWeight.Medium,
@@ -41,15 +43,17 @@ private val Typography = Typography(
         lineHeight = 18.sp,
         letterSpacing = 0.sp
     ),
-    // "Ag Body medium 14/20"
+
+    // "Ag Body medium 14/20" → Основной текст капсул, описания курсов
     bodyMedium = TextStyle(
         fontFamily = RobotoFontFamily,
         fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
+        fontSize = 16.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.sp
     ),
-    // "Ag Body small 12/16"
+
+    // "Ag Body small 12/16" → Вспомогательный текст: даты, статусы, метки
     bodySmall = TextStyle(
         fontFamily = RobotoFontFamily,
         fontWeight = FontWeight.Normal,
@@ -57,15 +61,17 @@ private val Typography = Typography(
         lineHeight = 16.sp,
         letterSpacing = 0.sp
     ),
-    // "Ag Body button small 12/15"
+
+    // "Ag Body button small 12/15" → Текст мелких кнопок («Отмена», «Подробнее»)
     labelLarge = TextStyle(
         fontFamily = RobotoFontFamily,
         fontWeight = FontWeight.Medium,
-        fontSize = 12.sp,
+        fontSize = 16.sp,
         lineHeight = 15.sp,
         letterSpacing = 0.sp
     ),
-    // "Ag Caption 12/14"
+
+    // "Ag Caption 12/14" → Подписи, капшн, второстепенные надписи
     labelSmall = TextStyle(
         fontFamily = RobotoFontFamily,
         fontWeight = FontWeight.Normal,

@@ -59,13 +59,24 @@ fun CoursesAppNavGraph(
 
             composable(CoursesAppDestinations.REGISTRATION_ROUTE) {
                 RegistrationScreen(
-                    onLoginClick = { navController.navigate(CoursesAppDestinations.LOGIN_ROUTE) }
+                    onLoginClick = {
+                        navController.navigate(CoursesAppDestinations.LOGIN_ROUTE) {
+                            popUpTo(CoursesAppDestinations.ONBOARDING_ROUTE) { inclusive = true }
+                        }
+                    },
+                    onRegistrationSuccess = {
+                        navController.navigate(CoursesAppDestinations.LOGIN_ROUTE) {
+                            popUpTo(CoursesAppDestinations.ONBOARDING_ROUTE) { inclusive = true }
+                        }
+                    }
                 )
             }
 
             composable(CoursesAppDestinations.LOGIN_ROUTE) {
                 LoginScreen(
-                    onRegistrationClick = { navController.navigate(CoursesAppDestinations.REGISTRATION_ROUTE) },
+                    onRegistrationClick = {
+                        navController.navigate(CoursesAppDestinations.REGISTRATION_ROUTE)
+                    },
                     onLoginSuccess = {
                         navController.navigate(CoursesAppDestinations.HOME_ROUTE) {
                             popUpTo(CoursesAppDestinations.ONBOARDING_ROUTE) { inclusive = true }

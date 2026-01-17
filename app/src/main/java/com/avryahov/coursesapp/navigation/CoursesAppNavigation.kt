@@ -10,6 +10,7 @@ private object CoursesAppScreens {
     const val ONBOARDING_SCREEN = "onboarding"
     const val REGISTRATION_SCREEN = "registration"
     const val LOGIN_SCREEN = "login"
+    const val FORGOT_PASSWORD_SCREEN = "forgot_password"
     const val HOME_SCREEN = "home"
     const val COURSE_SCREEN = "course"
     const val FAVOURITE_SCREEN = "favourite"
@@ -30,6 +31,7 @@ object CoursesAppDestinations {
     const val ONBOARDING_ROUTE = CoursesAppScreens.ONBOARDING_SCREEN
     const val REGISTRATION_ROUTE = CoursesAppScreens.REGISTRATION_SCREEN
     const val LOGIN_ROUTE = CoursesAppScreens.LOGIN_SCREEN
+    const val FORGOT_PASSWORD_ROUTE = CoursesAppScreens.FORGOT_PASSWORD_SCREEN
     const val HOME_ROUTE = CoursesAppScreens.HOME_SCREEN
     const val FAVOURITE_ROUTE = CoursesAppScreens.FAVOURITE_SCREEN
     const val PROFILE_ROUTE = CoursesAppScreens.PROFILE_SCREEN
@@ -58,6 +60,10 @@ class CoursesAppNavigationActions(private val navController: NavHostController) 
 
     fun navigateToLogin() {
         navController.navigate(CoursesAppDestinations.LOGIN_ROUTE)
+    }
+
+    fun navigateToForgotPassword() {
+        navController.navigate(CoursesAppDestinations.FORGOT_PASSWORD_ROUTE)
     }
 
     fun navigateToHome() {

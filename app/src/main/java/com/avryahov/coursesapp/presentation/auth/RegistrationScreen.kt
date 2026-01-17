@@ -11,17 +11,15 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.avryahov.coursesapp.R
 import com.avryahov.coursesapp.component.button.ActionButton
 import com.avryahov.coursesapp.component.button.SocialButton
+import com.avryahov.coursesapp.component.dialog.CustomErrorDialog
 import com.avryahov.coursesapp.component.input.EmailTextField
 import com.avryahov.coursesapp.component.input.PasswordTextField
 import com.avryahov.coursesapp.ui.theme.AppColors
@@ -29,13 +27,26 @@ import com.avryahov.coursesapp.ui.theme.AppColors
 @Composable
 fun RegistrationScreen(
     onLoginClick: () -> Unit,
-    onRegistrationSuccess: () -> Unit,
     onVkClick: () -> Unit = {},
     onOkClick: () -> Unit = {}
 ) {
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    var confirmPassword by remember { mutableStateOf("") }
+    val viewModel: AuthViewModel = hiltViewModel()
+
+    val email = viewModel.email
+    val password = viewModel.password
+    val confirmPassword = viewModel.confirmPassword
+    val isEmailValid = viewModel.isEmailValid
+    val isPasswordMatch = viewModel.isPasswordMatch
+    val canRegister = viewModel.canRegister
+    val uiState = viewModel.uiState
+
+    val emailError = (!isEmailValid && email.isNotEmpty())
+        .takeIf { it }
+        ?.let { stringResource(R.string.error_email_invalid) }
+
+    val passwordError = (!isPasswordMatch && confirmPassword.isNotEmpty())
+        .takeIf { it }
+        ?.let { stringResource(R.string.error_password_mismatch) }
 
     Column(
         modifier = Modifier
@@ -51,14 +62,16 @@ fun RegistrationScreen(
 
         EmailTextField(
             value = email,
-            onValueChange = { email = it },
+            onValueChange = viewModel::onEmailChanged,
+            isError = emailError != null,
+            errorMessage = emailError,
             modifier = Modifier.padding(bottom = 12.dp)
         )
 
         PasswordTextField(
             label = stringResource(R.string.password_label),
             value = password,
-            onValueChange = { password = it },
+            onValueChange = viewModel::onPasswordChanged,
             placeholder = stringResource(R.string.password_placeholder),
             modifier = Modifier.padding(bottom = 12.dp)
         )
@@ -66,14 +79,17 @@ fun RegistrationScreen(
         PasswordTextField(
             label = stringResource(R.string.confirm_password_label),
             value = confirmPassword,
-            onValueChange = { confirmPassword = it },
+            onValueChange = viewModel::onConfirmPasswordChanged,
             placeholder = stringResource(R.string.confirm_password_placeholder),
+            isError = passwordError != null,
+            errorMessage = passwordError,
             modifier = Modifier.padding(bottom = 18.dp)
         )
 
         ActionButton(
             text = stringResource(R.string.register_button),
-            onClick = onRegistrationSuccess,
+            onClick = { viewModel.register(onLoginClick) },
+            enabled = canRegister,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 16.dp)
@@ -119,10 +135,18 @@ fun RegistrationScreen(
             SocialButton(
                 iconResId = R.drawable.ic_ok,
                 contentDescription = stringResource(R.string.social_ok_content_desc),
-                onClick = onVkClick,
+                onClick = onOkClick,
                 containerColor = AppColors.OK,
                 modifier = Modifier.weight(1f)
             )
         }
+    }
+
+    // Показываем модальное окно, если есть ошибка
+    if (uiState.errorMessageResId != null) {
+        CustomErrorDialog(
+            message = stringResource(uiState.errorMessageResId),
+            onDismiss = { viewModel.clearError() }
+        )
     }
 }

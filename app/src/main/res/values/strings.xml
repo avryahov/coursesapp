@@ -53,4 +53,6 @@
     <string name="error_unknown">Произошла ошибка</string>
     <string name="error_title">Ошибка</string>
     <string name="ok_button">OK</string>
+    <string name="error_email_invalid">Неверный email</string>
+    <string name="error_password_mismatch">Пароли не совпадают</string>
 </resources>

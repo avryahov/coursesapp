@@ -29,12 +29,15 @@ fun ActionButton(
     height: Dp = 56.dp,
     cornerRadius: Dp = 50.dp
 ) {
+    val effectiveContainerColor = if (enabled) containerColor else containerColor.copy(alpha = 0.3f)
+    val effectiveContentColor = if (enabled) contentColor else contentColor.copy(alpha = 0.5f)
+
     Surface(
         onClick = onClick,
         enabled = enabled,
         shape = RoundedCornerShape(cornerRadius),
-        color = containerColor,
-        contentColor = contentColor,
+        color = effectiveContainerColor,
+        contentColor = effectiveContentColor,
         tonalElevation = 0.dp,
         shadowElevation = 0.dp,
         modifier = modifier.height(height)
@@ -46,7 +49,7 @@ fun ActionButton(
             Text(
                 text = text,
                 style = textStyle,
-                color = contentColor,
+                color = effectiveContentColor,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )

@@ -12,6 +12,8 @@ fun PasswordTextField(
     value: String,
     onValueChange: (String) -> Unit,
     placeholder: String,
+    isError: Boolean = false,
+    errorMessage: String? = null,
     modifier: Modifier = Modifier
 ) {
     BaseTextField(
@@ -19,6 +21,8 @@ fun PasswordTextField(
         value = value,
         onValueChange = onValueChange,
         placeholder = placeholder,
+        isError = isError,
+        errorMessage = errorMessage,
         visualTransformation = PasswordVisualTransformation(),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         modifier = modifier

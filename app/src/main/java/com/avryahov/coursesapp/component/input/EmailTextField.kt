@@ -11,12 +11,16 @@ import com.avryahov.coursesapp.R
 fun EmailTextField(
     value: String,
     onValueChange: (String) -> Unit,
+    isError: Boolean = false,
+    errorMessage: String? = null,
     modifier: Modifier = Modifier
 ) {
     BaseTextField(
         label = stringResource(R.string.email_label),
         value = value,
         onValueChange = onValueChange,
+        isError = isError,
+        errorMessage = errorMessage,
         placeholder = stringResource(R.string.email_placeholder),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
         modifier = modifier

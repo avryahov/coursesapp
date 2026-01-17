@@ -25,7 +25,7 @@ import com.avryahov.coursesapp.R
 import com.avryahov.coursesapp.component.button.ActionButton
 import com.avryahov.coursesapp.component.input.EmailTextField
 import com.avryahov.coursesapp.component.input.PasswordTextField
-import com.avryahov.coursesapp.component.navigationbar.RoundedIconButton
+import com.avryahov.coursesapp.component.button.RoundedIconButton
 import com.avryahov.coursesapp.ui.theme.AppColors
 
 @Composable

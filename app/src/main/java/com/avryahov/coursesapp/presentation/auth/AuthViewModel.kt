@@ -54,7 +54,7 @@ class AuthViewModel @Inject constructor(
     val isEmailValid: Boolean get() = registrationState.isEmailValid
     val isPasswordMatch: Boolean get() = registrationState.isPasswordMatch
     val canRegister: Boolean get() = registrationState.canRegister
-    val canLogin: Boolean get() = isEmailValid && password.length >= 8
+    val canLogin: Boolean get() = isEmailValid && password.isNotEmpty()
 
     fun clearError() {
         uiState = uiState.copy(errorMessageResId = null)

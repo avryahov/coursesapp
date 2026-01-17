@@ -29,6 +29,10 @@ turbine = "0.12.1"
 truth = "1.4.4"
 hamcrest = "1.3"
 androidxCoreSplashscreen = "1.0.1"
+uiText = "1.10.1"
+foundationLayout = "1.10.1"
+cloudy = "0.2.7"  # Актуальная версия на 2026
+
 
 # === УДАЛЕНО: androidGradlePlugin, androidxActivity, androidxCore, androidxLifecycle, androidxComposeBom, androidxEspresso и др. ===
 
@@ -92,9 +96,12 @@ hamcrest = { group = "org.hamcrest", name = "hamcrest", version.ref = "hamcrest"
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+cloudy = { group = "com.github.skydoves", name = "cloudy", version.ref = "cloudy" }
 
 # === Kotlin ===
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
+androidx-compose-ui-text = { group = "androidx.compose.ui", name = "ui-text", version.ref = "uiText" }
+androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref = "foundationLayout" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

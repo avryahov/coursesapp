@@ -1,6 +1,35 @@
 <resources>
     <string name="app_name">coursesapp</string>
 
+    <!-- Onboarding -->
+    <string name="onboarding_title">Тысячи курсов\nв одном месте</string>
+
+    <!-- Course tags -->
+    <string name="course_1c_admin">1С Администрирование</string>
+    <string name="course_rabbitmq">RabbitMQ</string>
+    <string name="course_traffic">Трафик</string>
+    <string name="course_content_marketing">Контент маркетинг</string>
+    <string name="course_b2b_marketing">B2B маркетинг</string>
+    <string name="course_google_analytics">Google Analytics</string>
+    <string name="course_ux_researcher">UX исследователь</string>
+    <string name="course_web_analytics">Веб-аналитика</string>
+    <string name="course_big_data">Big Data</string>
+    <string name="course_game_design">Геймдизайн</string>
+    <string name="course_web_design">Веб-дизайн</string>
+    <string name="course_cinema4d">Cinema 4D</string>
+    <string name="course_prompt_engineering">Промпт инжиниринг</string>
+    <string name="course_webflow">Webflow</string>
+    <string name="course_threejs">Three.js</string>
+    <string name="course_parsing">Парсинг</string>
+    <string name="course_python_dev">Python-разработка</string>
+
+    <!-- Buttons -->
+    <string name="continue_button">Продолжить</string>
+    <string name="register_button">Регистрация</string>
+    <string name="login_button">Вход</string>
+    <string name="start_course_button">Начать курс</string>
+    <string name="go_to_platform_button">Перейти на платформу</string>
+
     <!-- Bottom Navigation -->
     <string name="bottom_nav_home">Главная</string>
     <string name="bottom_nav_favourite">Избранное</string>

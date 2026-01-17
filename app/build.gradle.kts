@@ -66,6 +66,8 @@ dependencies {
     // === Architecture Components: Room ===
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
+    implementation(libs.androidx.compose.ui.text)
+    implementation(libs.androidx.compose.foundation.layout)
     ksp(libs.room.compiler)
 
     // === Lifecycle & ViewModel (Compose-совместимые) ===
@@ -112,4 +114,7 @@ dependencies {
     // Hilt в instrumented-тестах
     androidTestImplementation(libs.hilt.android.testing)
     kspAndroidTest(libs.hilt.compiler)
+
+    // Дополнительные зависимости сторонних разработчиков
+    implementation(libs.cloudy)
 }

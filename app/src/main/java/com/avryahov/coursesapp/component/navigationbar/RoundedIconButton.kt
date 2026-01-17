@@ -28,7 +28,7 @@ fun RoundedIconButton(
     cornerRadius: Dp = 16.dp,
     iconSize: Dp = 28.dp,
     iconPadding: Dp = 2.dp,
-    modifier: Modifier = Modifier
+    modifier: Modifier
 ) {
     Surface(
         shape = RoundedCornerShape(cornerRadius),

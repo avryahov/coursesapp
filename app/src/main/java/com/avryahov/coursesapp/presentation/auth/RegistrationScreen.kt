@@ -1,5 +1,8 @@
 package com.avryahov.coursesapp.presentation.auth
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,8 +14,10 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -22,14 +27,13 @@ import com.avryahov.coursesapp.component.button.SocialButton
 import com.avryahov.coursesapp.component.dialog.CustomErrorDialog
 import com.avryahov.coursesapp.component.input.EmailTextField
 import com.avryahov.coursesapp.component.input.PasswordTextField
+import com.avryahov.coursesapp.data.model.AuthEffect
 import com.avryahov.coursesapp.ui.theme.AppColors
+import kotlinx.coroutines.flow.Flow
 
 @Composable
-fun RegistrationScreen(
-    onLoginClick: () -> Unit,
-    onVkClick: () -> Unit = {},
-    onOkClick: () -> Unit = {}
-) {
+fun RegistrationScreen(onLoginClick: () -> Unit) {
+    val context = LocalContext.current
     val viewModel: AuthViewModel = hiltViewModel()
 
     val email = viewModel.email
@@ -39,6 +43,8 @@ fun RegistrationScreen(
     val isPasswordMatch = viewModel.isPasswordMatch
     val canRegister = viewModel.canRegister
     val uiState = viewModel.uiState
+
+    HandleAuthEffects(viewModel.effect, context)
 
     val emailError = (!isEmailValid && email.isNotEmpty())
         .takeIf { it }
@@ -127,7 +133,7 @@ fun RegistrationScreen(
             SocialButton(
                 iconResId = R.drawable.ic_vk,
                 contentDescription = stringResource(R.string.social_vk_content_desc),
-                onClick = onVkClick,
+                onClick = { viewModel.onVkClick() },
                 containerColor = AppColors.VK,
                 modifier = Modifier.weight(1f)
             )
@@ -135,18 +141,39 @@ fun RegistrationScreen(
             SocialButton(
                 iconResId = R.drawable.ic_ok,
                 contentDescription = stringResource(R.string.social_ok_content_desc),
-                onClick = onOkClick,
+                onClick = { viewModel.onOkClick() },
                 containerColor = AppColors.OK,
                 modifier = Modifier.weight(1f)
             )
         }
     }
 
-    // Показываем модальное окно, если есть ошибка
     if (uiState.errorMessageResId != null) {
         CustomErrorDialog(
             message = stringResource(uiState.errorMessageResId),
             onDismiss = { viewModel.clearError() }
         )
+    }
+}
+
+
+@Composable
+private fun HandleAuthEffects(
+    effect: Flow<AuthEffect>,
+    context: Context
+) {
+    LaunchedEffect(Unit) {
+        effect.collect { authEffect ->
+            when (authEffect) {
+                is AuthEffect.OpenSocialUrl -> {
+                    try {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(authEffect.url))
+                        context.startActivity(intent)
+                    } catch (e: Exception) {
+                        // not throws
+                    }
+                }
+            }
+        }
     }
 }

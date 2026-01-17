@@ -23,6 +23,8 @@ fun BaseTextField(
     placeholder: String,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    isError: Boolean = false,
+    errorMessage: String? = null,
     modifier: Modifier = Modifier
 ) {
     val shape = RoundedCornerShape(50.dp)
@@ -54,5 +56,14 @@ fun BaseTextField(
                 unfocusedIndicatorColor = Color.Transparent
             )
         )
+
+        if (isError && errorMessage != null) {
+            Text(
+                text = errorMessage,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.error,
+                modifier = Modifier.padding(start = 16.dp, top = 4.dp)
+            )
+        }
     }
 }

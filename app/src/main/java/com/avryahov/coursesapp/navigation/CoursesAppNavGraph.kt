@@ -48,7 +48,7 @@ fun CoursesAppNavGraph(
     ) { padding: PaddingValues ->
         NavHost(
             navController = navController,
-            startDestination = CoursesAppDestinations.HOME_ROUTE,
+            startDestination = CoursesAppDestinations.ONBOARDING_ROUTE,
             modifier = Modifier.padding(padding)
         ) {
             composable(CoursesAppDestinations.ONBOARDING_ROUTE) {

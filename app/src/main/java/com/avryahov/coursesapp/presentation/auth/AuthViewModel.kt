@@ -54,6 +54,7 @@ class AuthViewModel @Inject constructor(
     val isEmailValid: Boolean get() = registrationState.isEmailValid
     val isPasswordMatch: Boolean get() = registrationState.isPasswordMatch
     val canRegister: Boolean get() = registrationState.canRegister
+    val canLogin: Boolean get() = isEmailValid && password.length >= 8
 
     fun clearError() {
         uiState = uiState.copy(errorMessageResId = null)
@@ -114,7 +115,8 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    fun login(email: String, password: String, onSuccess: () -> Unit) {
+    fun login(onSuccess: () -> Unit) {
+        if (!canLogin) return
         viewModelScope.launch {
             val result = authRepository.login(email, password)
             if (result.isSuccess) {

@@ -56,16 +56,13 @@ fun CoursesAppNavGraph(
                     navController.navigate(CoursesAppDestinations.REGISTRATION_ROUTE)
                 })
             }
+
             composable(CoursesAppDestinations.REGISTRATION_ROUTE) {
                 RegistrationScreen(
-                    onLoginClick = { navController.navigate(CoursesAppDestinations.LOGIN_ROUTE) },
-                    onRegistrationSuccess = {
-                        navController.navigate(CoursesAppDestinations.HOME_ROUTE) {
-                            popUpTo(CoursesAppDestinations.ONBOARDING_ROUTE) { inclusive = true }
-                        }
-                    }
+                    onLoginClick = { navController.navigate(CoursesAppDestinations.LOGIN_ROUTE) }
                 )
             }
+
             composable(CoursesAppDestinations.LOGIN_ROUTE) {
                 LoginScreen(
                     onRegistrationClick = { navController.navigate(CoursesAppDestinations.REGISTRATION_ROUTE) },
@@ -76,17 +73,21 @@ fun CoursesAppNavGraph(
                     }
                 )
             }
+
             composable(CoursesAppDestinations.HOME_ROUTE) {
                 HomeScreen(navController) { courseId ->
                     navActions.navigateToCourse(courseId)
                 }
             }
+
             composable(CoursesAppDestinations.FAVOURITE_ROUTE) {
                 FavouriteScreen(navController)
             }
+
             composable(CoursesAppDestinations.PROFILE_ROUTE) {
                 ProfileScreen(navController)
             }
+
             composable(
                 route = CoursesAppDestinations.COURSE_ROUTE,
                 arguments = listOf(navArgument(CoursesAppDestinationsArgs.COURSE_ID_ARG) {

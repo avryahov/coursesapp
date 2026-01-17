@@ -47,4 +47,10 @@
     <string name="login_action">Войти</string>
     <string name="social_vk_content_desc">Войти через Вконтакте</string>
     <string name="social_ok_content_desc">Войти через Одноклассники</string>
+
+    <!-- Error dialog -->
+    <string name="error_invalid_credentials">Неверный логин или пароль</string>
+    <string name="error_unknown">Произошла ошибка</string>
+    <string name="error_title">Ошибка</string>
+    <string name="ok_button">OK</string>
 </resources>

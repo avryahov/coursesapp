@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -18,14 +17,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.avryahov.coursesapp.R
 import com.avryahov.coursesapp.component.button.ActionButton
+import com.avryahov.coursesapp.component.button.SocialButton
 import com.avryahov.coursesapp.component.input.EmailTextField
 import com.avryahov.coursesapp.component.input.PasswordTextField
-import com.avryahov.coursesapp.component.button.RoundedIconButton
 import com.avryahov.coursesapp.ui.theme.AppColors
 
 @Composable
@@ -110,30 +108,20 @@ fun RegistrationScreen(
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            RoundedIconButton(
+            SocialButton(
                 iconResId = R.drawable.ic_vk,
-                contentDescription = "VK",
-                cornerRadius = 50.dp,
+                contentDescription = stringResource(R.string.social_vk_content_desc),
+                onClick = onVkClick,
                 containerColor = AppColors.VK,
-                iconTint = Color.White,
-                modifier = Modifier
-                    .height(50.dp)
-                    .fillMaxWidth()
-                    .weight(1f),
-                onClick = onVkClick
+                modifier = Modifier.weight(1f)
             )
 
-            RoundedIconButton(
+            SocialButton(
                 iconResId = R.drawable.ic_ok,
-                contentDescription = "OK",
-                cornerRadius = 50.dp,
+                contentDescription = stringResource(R.string.social_ok_content_desc),
+                onClick = onVkClick,
                 containerColor = AppColors.OK,
-                iconTint = Color.White,
-                modifier = Modifier
-                    .height(50.dp)
-                    .fillMaxWidth()
-                    .weight(1f),
-                onClick = onOkClick
+                modifier = Modifier.weight(1f)
             )
         }
     }

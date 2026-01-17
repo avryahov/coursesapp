@@ -45,4 +45,6 @@
     <string name="confirm_password_placeholder">Введите пароль ещё раз</string>
     <string name="already_have_account">Уже есть аккаунт? </string>
     <string name="login_action">Войти</string>
+    <string name="social_vk_content_desc">Войти через Вконтакте</string>
+    <string name="social_ok_content_desc">Войти через Одноклассники</string>
 </resources>

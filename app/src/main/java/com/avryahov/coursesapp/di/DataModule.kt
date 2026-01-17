@@ -1,1 +1,20 @@
-// Auto-generated stub for com/avryahov/coursesapp/di/DataModule.kt
+package com.avryahov.coursesapp.di
+
+import com.avryahov.coursesapp.data.repository.AuthRepository
+import com.avryahov.coursesapp.data.repository.LocalAuthRepository
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
+object DataModule {
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(): AuthRepository {
+        return LocalAuthRepository()
+    }
+}

@@ -68,7 +68,7 @@ fun RegistrationScreen(
             value = confirmPassword,
             onValueChange = { confirmPassword = it },
             placeholder = stringResource(R.string.confirm_password_placeholder),
-            modifier = Modifier.padding(bottom = 12.dp)
+            modifier = Modifier.padding(bottom = 18.dp)
         )
 
         ActionButton(
@@ -100,7 +100,7 @@ fun RegistrationScreen(
         HorizontalDivider(
             color = MaterialTheme.colorScheme.outline,
             thickness = 1.dp,
-            modifier = Modifier.padding(bottom = 24.dp)
+            modifier = Modifier.padding(top = 20.dp, bottom = 40.dp)
         )
 
         Row(

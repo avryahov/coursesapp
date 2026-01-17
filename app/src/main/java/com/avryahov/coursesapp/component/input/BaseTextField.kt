@@ -1,7 +1,5 @@
 package com.avryahov.coursesapp.component.input
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -27,12 +25,14 @@ fun BaseTextField(
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     modifier: Modifier = Modifier
 ) {
+    val shape = RoundedCornerShape(50.dp)
+
     Column(modifier = modifier) {
         Text(
             text = label,
             style = MaterialTheme.typography.labelLarge,
             color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.padding(top= 4.dp, bottom = 10.dp)
+            modifier = Modifier.padding(top = 4.dp, bottom = 10.dp)
         )
         TextField(
             value = value,
@@ -46,24 +46,13 @@ fun BaseTextField(
             },
             visualTransformation = visualTransformation,
             keyboardOptions = keyboardOptions,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(
-                    color = MaterialTheme.colorScheme.secondary,
-                    shape = RoundedCornerShape(50.dp)
-                )
-                .border(
-                    width = 1.dp,
-                    color = Color.Transparent, // no visible border
-                    shape = RoundedCornerShape(50.dp)
-                ),
+            modifier = Modifier.fillMaxWidth(),
+            shape = shape,
             colors = TextFieldDefaults.colors(
+                unfocusedContainerColor = MaterialTheme.colorScheme.secondary,
                 focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent,
-                cursorColor = MaterialTheme.colorScheme.onBackground
-            ),
-            shape = RoundedCornerShape(50.dp)
+                unfocusedIndicatorColor = Color.Transparent
+            )
         )
     }
 }

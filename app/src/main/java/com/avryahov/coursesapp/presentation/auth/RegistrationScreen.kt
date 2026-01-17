@@ -32,7 +32,10 @@ import com.avryahov.coursesapp.ui.theme.AppColors
 import kotlinx.coroutines.flow.Flow
 
 @Composable
-fun RegistrationScreen(onLoginClick: () -> Unit) {
+fun RegistrationScreen(
+    onLoginClick: () -> Unit,
+    onRegistrationSuccess: () -> Unit
+) {
     val context = LocalContext.current
     val viewModel: AuthViewModel = hiltViewModel()
 
@@ -94,7 +97,7 @@ fun RegistrationScreen(onLoginClick: () -> Unit) {
 
         ActionButton(
             text = stringResource(R.string.register_button),
-            onClick = { viewModel.register(onLoginClick) },
+            onClick = { viewModel.register(onRegistrationSuccess) }, // → идёт на LoginScreen
             enabled = canRegister,
             modifier = Modifier
                 .fillMaxWidth()

@@ -79,9 +79,9 @@ fun filterCourses(
     }
 
     result = when (priceFilter) {
-        PriceFilter.UNDER_1000 -> result.filter { it.priceAsInt < 1000 }
-        PriceFilter.FROM_1000_TO_5000 -> result.filter { it.priceAsInt in 1000..5000 }
-        PriceFilter.OVER_5000 -> result.filter { it.priceAsInt > 5000 }
+        PriceFilter.UNDER_1000 -> result.filter { it.price < 1000 }
+        PriceFilter.FROM_1000_TO_5000 -> result.filter { it.price in 1000..5000 }
+        PriceFilter.OVER_5000 -> result.filter { it.price > 5000 }
         null -> result
     }
 

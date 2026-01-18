@@ -74,6 +74,9 @@
     <string name="content_desc_add_to_favorites">Добавить в избранное</string>
     <string name="content_desc_remove_from_favorites">Удалить из избранного</string>
     <string name="course_card_details_button">Подробнее →</string>
+    <string name="search_courses">Поиск курсов</string>
+    <string name="sort_by_date_added">По дате добавления</string>
+    <string name="content_desc_sort_toggle">Переключить сортировку</string>
 
     <!-- Error dialog -->
     <string name="error_invalid_credentials">Неверный логин или пароль</string>

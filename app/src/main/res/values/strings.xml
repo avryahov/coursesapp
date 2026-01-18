@@ -63,7 +63,8 @@
     <string name="search_content_description">Поиск</string>
     <string name="filter_content_description">Фильтр</string>
     <string name="search_courses_placeholder">Поиск курсов</string>
-    <string name="filter_title">Фильтры</string>
+    <string name="any_price">Любая цена</string>
+    <string name="filter_by_price">Фильтр по цене</string>
     <string name="price_under_1000">До 1000 ₽</string>
     <string name="price_1000_5000">1000–5000 ₽</string>
     <string name="price_over_5000">Свыше 5000 ₽</string>

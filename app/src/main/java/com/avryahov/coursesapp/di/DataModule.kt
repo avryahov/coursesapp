@@ -1,6 +1,8 @@
 package com.avryahov.coursesapp.di
 
 import com.avryahov.coursesapp.data.repository.AuthRepository
+import com.avryahov.coursesapp.data.repository.CourseRepository
+import com.avryahov.coursesapp.data.repository.DefaultCourseRepository
 import com.avryahov.coursesapp.data.repository.LocalAuthRepository
 import dagger.Module
 import dagger.Provides
@@ -16,5 +18,11 @@ object DataModule {
     @Singleton
     fun provideAuthRepository(): AuthRepository {
         return LocalAuthRepository()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCourseRepository(): CourseRepository {
+        return DefaultCourseRepository()
     }
 }

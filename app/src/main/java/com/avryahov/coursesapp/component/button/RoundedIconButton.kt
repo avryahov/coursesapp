@@ -1,7 +1,6 @@
 package com.avryahov.coursesapp.component.button
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,16 +17,16 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun RoundedIconButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
     iconResId: Int,
     contentDescription: String,
-    onClick: () -> Unit,
     containerColor: Color = Color.Transparent,
     iconTint: Color = MaterialTheme.colorScheme.onBackground,
     cornerRadius: Dp = 16.dp,
     iconSize: Dp = 28.dp,
     iconPadding: Dp = 2.dp,
     enabled: Boolean = true,
-    modifier: Modifier = Modifier
 ) {
     Surface(
         shape = RoundedCornerShape(cornerRadius),
@@ -39,7 +38,6 @@ fun RoundedIconButton(
     ) {
         Box(
             contentAlignment = Alignment.Center,
-            modifier = Modifier.fillMaxSize()
         ) {
             Icon(
                 painter = painterResource(id = iconResId),

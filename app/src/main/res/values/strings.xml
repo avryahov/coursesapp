@@ -59,6 +59,26 @@
     <string name="forgot_password_message">Эта функция будет доступна в ближайшем обновлении.</string>
     <string name="back_button">Назад</string>
 
+    <!-- Search & Filter -->
+    <string name="search_content_description">Поиск</string>
+    <string name="filter_content_description">Фильтр</string>
+    <string name="search_courses_placeholder">Поиск курсов</string>
+    <string name="any_price">Любая цена</string>
+    <string name="filter_by_price">Фильтр по цене</string>
+    <string name="price_under_1000">До 1000 ₽</string>
+    <string name="price_1000_5000">1000–5000 ₽</string>
+    <string name="price_over_5000">Свыше 5000 ₽</string>
+    <string name="apply">Применить</string>
+    <string name="cancel">Отмена</string>
+
+    <!-- Course Card -->
+    <string name="content_desc_add_to_favorites">Добавить в избранное</string>
+    <string name="content_desc_remove_from_favorites">Удалить из избранного</string>
+    <string name="course_card_details_button">Подробнее →</string>
+    <string name="search_courses">Поиск курсов</string>
+    <string name="sort_by_date_added">По дате добавления</string>
+    <string name="content_desc_sort_toggle">Переключить сортировку</string>
+
     <!-- Error dialog -->
     <string name="error_invalid_credentials">Неверный логин или пароль</string>
     <string name="error_unknown">Произошла ошибка</string>

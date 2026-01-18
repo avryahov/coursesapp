@@ -78,7 +78,7 @@ class CoursesAppNavigationActions(private val navController: NavHostController) 
         navigateTo(CoursesAppDestinations.PROFILE_ROUTE)
     }
 
-    fun navigateToCourse(courseId: String) {
+    fun navigateToCourse(courseId: Int) {
         navController.navigate("${CoursesAppScreens.COURSE_SCREEN}/$courseId")
     }
 

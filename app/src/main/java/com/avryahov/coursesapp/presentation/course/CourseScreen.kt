@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 
 @Composable
-fun CourseScreen(navController: NavController, courseId: String, onBackClick: () -> Unit) {
+fun CourseScreen(navController: NavController, courseId: Int, onBackClick: () -> Unit) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background

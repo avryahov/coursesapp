@@ -13,7 +13,7 @@ import androidx.navigation.NavController
 @Composable
 fun HomeScreen(
     navController: NavController,
-    onCourseClick: (String) -> Unit
+    onCourseClick: (Int) -> Unit
 ) {
     Surface(
         modifier = Modifier.fillMaxSize(),

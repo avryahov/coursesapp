@@ -112,11 +112,11 @@ fun CoursesAppNavGraph(
             composable(
                 route = CoursesAppDestinations.COURSE_ROUTE,
                 arguments = listOf(navArgument(CoursesAppDestinationsArgs.COURSE_ID_ARG) {
-                    type = NavType.StringType
+                    type = NavType.IntType
                     nullable = true
                 })
             ) { entry ->
-                val courseId = entry.arguments?.getString(CoursesAppDestinationsArgs.COURSE_ID_ARG)
+                val courseId = entry.arguments?.getInt(CoursesAppDestinationsArgs.COURSE_ID_ARG)
                     ?: error("courseId was required")
 
                 CourseScreen(

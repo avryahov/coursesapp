@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.avryahov.coursesapp.R
@@ -34,8 +33,7 @@ fun BottomSection(
     ) {
         Text(
             text = course.title,
-            style = MaterialTheme.typography.headlineSmall,
-            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -44,7 +42,8 @@ fun BottomSection(
             style = MaterialTheme.typography.bodyMedium,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
         )
 
         Row(

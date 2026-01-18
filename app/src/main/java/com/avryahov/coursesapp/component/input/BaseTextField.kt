@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun BaseTextField(
+    modifier: Modifier = Modifier,
     label: String,
     value: String,
     onValueChange: (String) -> Unit,
@@ -24,8 +25,7 @@ fun BaseTextField(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     isError: Boolean = false,
-    errorMessage: String? = null,
-    modifier: Modifier = Modifier
+    errorMessage: String? = null
 ) {
     val shape = RoundedCornerShape(50.dp)
 

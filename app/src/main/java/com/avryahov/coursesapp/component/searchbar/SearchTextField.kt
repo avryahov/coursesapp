@@ -14,6 +14,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,12 +32,14 @@ fun SearchTextField(
     onSearchChange: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    var searchText by remember { mutableStateOf("") }
+
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(48.dp)
+            .height(56.dp)
             .clip(RoundedCornerShape(50.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .background(MaterialTheme.colorScheme.surfaceVariant.copy(0.7f))
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -48,8 +54,11 @@ fun SearchTextField(
             )
 
             TextField(
-                value = "",
-                onValueChange = onSearchChange,
+                value = searchText,
+                onValueChange = { newValue ->
+                    searchText = newValue
+                    onSearchChange(newValue)
+                },
                 placeholder = {
                     Text(
                         text = stringResource(R.string.search_courses_placeholder),
@@ -62,6 +71,8 @@ fun SearchTextField(
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
                     cursorColor = MaterialTheme.colorScheme.primary,
+                    focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                    unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
                     focusedLeadingIconColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                     unfocusedLeadingIconColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
                 ),

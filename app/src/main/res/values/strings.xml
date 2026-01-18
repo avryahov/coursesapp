@@ -79,6 +79,9 @@
     <string name="sort_by_date_added">По дате добавления</string>
     <string name="content_desc_sort_toggle">Переключить сортировку</string>
 
+    <!-- Favourite Screen -->
+    <string name="favourite_title">Избранное</string>
+
     <!-- Error dialog -->
     <string name="error_invalid_credentials">Неверный логин или пароль</string>
     <string name="error_unknown">Произошла ошибка</string>

@@ -19,14 +19,17 @@ import androidx.compose.ui.unit.dp
 fun InfoBadge(
     modifier: Modifier = Modifier,
     text: String,
-    iconResId: Int? = null
+    iconResId: Int? = null,
+    textColor: Color,
+    iconTint: Color,
+    containerColor: Color
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .background(
-                color = Color.Black.copy(alpha = 0.6f),
-                shape = RoundedCornerShape(8.dp)
+                color = containerColor,
+                shape = RoundedCornerShape(12.dp)
             )
             .padding(horizontal = 8.dp, vertical = 4.dp)
     ) {
@@ -34,7 +37,7 @@ fun InfoBadge(
             Icon(
                 painter = painterResource(id = iconResId),
                 contentDescription = null,
-                tint = Color.Yellow,
+                tint = iconTint,
                 modifier = Modifier
                     .size(16.dp)
                     .padding(end = 4.dp)
@@ -43,7 +46,7 @@ fun InfoBadge(
         Text(
             text = text,
             style = MaterialTheme.typography.bodySmall,
-            color = Color.White
+            color = textColor
         )
     }
 }

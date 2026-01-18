@@ -18,16 +18,16 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun RoundedIconButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
     iconResId: Int,
     contentDescription: String,
-    onClick: () -> Unit,
     containerColor: Color = Color.Transparent,
     iconTint: Color = MaterialTheme.colorScheme.onBackground,
     cornerRadius: Dp = 16.dp,
     iconSize: Dp = 28.dp,
     iconPadding: Dp = 2.dp,
     enabled: Boolean = true,
-    modifier: Modifier = Modifier
 ) {
     Surface(
         shape = RoundedCornerShape(cornerRadius),

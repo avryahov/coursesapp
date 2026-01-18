@@ -12,4 +12,11 @@ data class Course(
     val hasLike: Boolean,
     val publishDate: String,
     @field:DrawableRes val bannerResId: Int
-)
+) {
+    val priceAsInt: Int
+        get() = price
+            .replace(" ", "")
+            .replace("₽", "")
+            .replace("\u00A0", "")
+            .toIntOrNull() ?: 0
+}

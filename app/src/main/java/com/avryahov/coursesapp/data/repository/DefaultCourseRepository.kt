@@ -2,6 +2,7 @@ package com.avryahov.coursesapp.data.repository
 
 import com.avryahov.coursesapp.R
 import com.avryahov.coursesapp.data.model.Course
+import java.time.LocalDateTime
 
 class DefaultCourseRepository : CourseRepository {
 
@@ -12,9 +13,9 @@ class DefaultCourseRepository : CourseRepository {
             text = "Освойте backend-разработку и программирование на Java, фреймворки Spring и Maven, работу с базами данных и API. Создайте свой собственный проект, собрав портфолио и став востребованным специалистом для любой IT компании.",
             price = 999,
             rate = 4.9f,
-            startDate = "2024-05-22",
+            startDate = LocalDateTime.of(2024, 5, 22, 0, 0),
             hasLike = false,
-            publishDate = "2024-02-02",
+            publishDate = LocalDateTime.of(2024, 2, 2, 0, 0),
             bannerResId = R.drawable.course_banner_1
         ),
         Course(
@@ -23,9 +24,9 @@ class DefaultCourseRepository : CourseRepository {
             text = "Освой профессию 3D-дженералиста и стань универсальным специалистом, который умеет создавать 3D-модели, текстуры и анимации, а также может строить карьеру в геймдеве, кино, рекламе или дизайне.",
             price = 12000,
             rate = 3.9f,
-            startDate = "2024-09-10",
+            startDate = LocalDateTime.of(2024, 9, 10, 0, 0),
             hasLike = false,
-            publishDate = "2024-01-20",
+            publishDate = LocalDateTime.of(2024, 1, 20, 0, 0),
             bannerResId = R.drawable.course_banner_2
         ),
         Course(
@@ -34,9 +35,9 @@ class DefaultCourseRepository : CourseRepository {
             text = "Вы узнаете, как разрабатывать гибкие и высокопроизводительные серверные приложения на языке Kotlin. Преподаватели на вебинарах покажут пример того, как разрабатывается проект маркетплейса: от идеи и постановки задачи – до конечного решения",
             price = 1299,
             rate = 4.3f,
-            startDate = "2024-10-12",
+            startDate = LocalDateTime.of(2024, 10, 12, 0, 0),
             hasLike = true,
-            publishDate = "2024-08-10",
+            publishDate = LocalDateTime.of(2024, 8, 10, 0, 0),
             bannerResId = R.drawable.course_banner_3
         )
     )

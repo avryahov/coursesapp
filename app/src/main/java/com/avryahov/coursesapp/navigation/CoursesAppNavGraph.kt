@@ -19,7 +19,7 @@ import com.avryahov.coursesapp.presentation.auth.ForgotPasswordScreen
 import com.avryahov.coursesapp.presentation.auth.LoginScreen
 import com.avryahov.coursesapp.presentation.auth.RegistrationScreen
 import com.avryahov.coursesapp.presentation.course.CourseScreen
-import com.avryahov.coursesapp.presentation.favorite.FavouriteScreen
+import com.avryahov.coursesapp.presentation.favourite.FavouriteScreen
 import com.avryahov.coursesapp.presentation.home.HomeScreen
 import com.avryahov.coursesapp.presentation.onboarding.OnboardingScreen
 import com.avryahov.coursesapp.presentation.profile.ProfileScreen

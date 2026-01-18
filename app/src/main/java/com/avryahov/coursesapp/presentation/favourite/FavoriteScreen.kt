@@ -1,4 +1,4 @@
-package com.avryahov.coursesapp.presentation.favorite
+package com.avryahov.coursesapp.presentation.favourite
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

@@ -40,7 +40,7 @@ fun BottomNavigationBar(
             ),
             CoursesAppDestinations.FAVOURITE_ROUTE to BottomNavItem(
                 label = favouriteLabel,
-                iconResId = R.drawable.ic_favorite
+                iconResId = R.drawable.ic_favourite
             ),
             CoursesAppDestinations.PROFILE_ROUTE to BottomNavItem(
                 label = profileLabel,

@@ -80,10 +80,10 @@ fun TopSection(
         ) {
             RoundedIconButton(
                 onClick = onToggleLike,
-                iconResId = R.drawable.ic_favorite,
+                iconResId = R.drawable.ic_favourite,
                 contentDescription = stringResource(
-                    id = if (course.hasLike) R.string.content_desc_remove_from_favorites
-                    else R.string.content_desc_add_to_favorites
+                    id = if (course.hasLike) R.string.content_desc_remove_from_favourites
+                    else R.string.content_desc_add_to_favourites
                 ),
                 containerColor = badgeContainerColor,
                 iconTint = if (course.hasLike) AppColors.PrimaryGreen else badgeContentColor,

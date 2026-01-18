@@ -36,7 +36,7 @@ fun SearchBar(
             onClick = onFilterClick,
             iconResId = R.drawable.ic_filter,
             contentDescription = stringResource(R.string.filter_content_description),
-            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(0.7f),
             iconTint = MaterialTheme.colorScheme.onSurface,
             cornerRadius = 28.dp,
             iconSize = 24.dp,

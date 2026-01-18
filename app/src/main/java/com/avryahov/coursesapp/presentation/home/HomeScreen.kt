@@ -34,6 +34,11 @@ fun HomeScreen(
 ) {
     val uiState = viewModel.uiState.collectAsState()
 
+    val (_, setFilterDialogOpen) = rememberPriceFilterDialogController(
+        currentFilter = uiState.value.selectedPriceFilter,
+        onApply = { viewModel.onPriceFilterSelected(it) }
+    )
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -45,7 +50,7 @@ fun HomeScreen(
         ) {
             SearchBar(
                 onSearchChange = { viewModel.onSearchQueryChanged(it) },
-                onFilterClick = { /* */ },
+                onFilterClick = { setFilterDialogOpen(true) },
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -85,7 +90,9 @@ fun HomeScreen(
                         onToggleLike = { courseId ->
                             viewModel.onToggleLike(courseId)
                         },
-                        onNavigateToCourse = { /* ... */ }
+                        onNavigateToCourse = {
+                            onCourseClick(course.id)
+                        }
                     )
                 }
             }

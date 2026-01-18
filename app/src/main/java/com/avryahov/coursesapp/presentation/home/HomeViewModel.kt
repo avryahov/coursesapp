@@ -13,10 +13,16 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class HomeUiState(
-    val courses: List<Course> = emptyList(),
+    val allCourses: List<Course> = emptyList(),
+    val filteredCourses: List<Course> = emptyList(),
     val searchQuery: String = "",
-    val selectedPriceFilter: PriceFilter? = null
+    val selectedPriceFilter: PriceFilter? = null,
+    val sortDirection: SortDirection = SortDirection.Descending
 )
+
+enum class SortDirection {
+    Ascending, Descending
+}
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -33,7 +39,7 @@ class HomeViewModel @Inject constructor(
     private fun loadCourses() {
         viewModelScope.launch {
             val allCourses = courseRepository.getCourses()
-            updateState { copy(courses = allCourses) }
+            _uiState.value = HomeUiState(allCourses = allCourses)
             applyFilters()
         }
     }
@@ -48,42 +54,56 @@ class HomeViewModel @Inject constructor(
         applyFilters()
     }
 
+    fun onSortToggle() {
+        val newDirection = when (uiState.value.sortDirection) {
+            SortDirection.Ascending -> SortDirection.Descending
+            SortDirection.Descending -> SortDirection.Ascending
+        }
+        updateState { copy(sortDirection = newDirection) }
+        applyFilters()
+    }
+
+    fun onToggleLike(courseId: Int) {
+        val currentState = _uiState.value
+        val updatedAllCourses = currentState.allCourses.map { course ->
+            if (course.id == courseId) {
+                course.copy(hasLike = !course.hasLike)
+            } else {
+                course
+            }
+        }
+        _uiState.value = currentState.copy(allCourses = updatedAllCourses)
+        applyFilters()
+    }
+
     private fun applyFilters() {
         val state = _uiState.value
-        val filtered = filterCourses(
-            courses = state.courses,
-            query = state.searchQuery,
-            priceFilter = state.selectedPriceFilter
-        )
-        _uiState.value = state.copy(courses = filtered)
+        var result = state.allCourses
+
+        if (state.searchQuery.isNotBlank()) {
+            val q = state.searchQuery.lowercase().trim()
+            result = result.filter { course ->
+                course.title.lowercase().contains(q) ||
+                        course.text.lowercase().contains(q)
+            }
+        }
+
+        result = when (state.selectedPriceFilter) {
+            PriceFilter.UNDER_1000 -> result.filter { it.price < 1000 }
+            PriceFilter.FROM_1000_TO_5000 -> result.filter { it.price in 1000..5000 }
+            PriceFilter.OVER_5000 -> result.filter { it.price > 5000 }
+            null -> result
+        }
+
+        result = when (state.sortDirection) {
+            SortDirection.Ascending -> result.sortedBy { it.publishDate }
+            SortDirection.Descending -> result.sortedByDescending { it.publishDate }
+        }
+
+        _uiState.value = state.copy(filteredCourses = result)
     }
 
     private fun updateState(block: HomeUiState.() -> HomeUiState) {
         _uiState.value = block(_uiState.value)
     }
-}
-
-fun filterCourses(
-    courses: List<Course>,
-    query: String,
-    priceFilter: PriceFilter?
-): List<Course> {
-    var result = courses
-
-    if (query.isNotBlank()) {
-        val q = query.lowercase().trim()
-        result = result.filter { course ->
-            course.title.lowercase().contains(q) ||
-                    course.text.lowercase().contains(q)
-        }
-    }
-
-    result = when (priceFilter) {
-        PriceFilter.UNDER_1000 -> result.filter { it.price < 1000 }
-        PriceFilter.FROM_1000_TO_5000 -> result.filter { it.price in 1000..5000 }
-        PriceFilter.OVER_5000 -> result.filter { it.price > 5000 }
-        null -> result
-    }
-
-    return result
 }

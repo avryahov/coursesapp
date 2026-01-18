@@ -96,9 +96,12 @@ fun CoursesAppNavGraph(
             }
 
             composable(CoursesAppDestinations.HOME_ROUTE) {
-                HomeScreen(navController) { courseId ->
-                    navActions.navigateToCourse(courseId)
-                }
+                HomeScreen(
+                    navController,
+                    onCourseClick = { courseId ->
+                        navActions.navigateToCourse(courseId)
+                    }
+                )
             }
 
             composable(CoursesAppDestinations.FAVOURITE_ROUTE) {
@@ -113,7 +116,6 @@ fun CoursesAppNavGraph(
                 route = CoursesAppDestinations.COURSE_ROUTE,
                 arguments = listOf(navArgument(CoursesAppDestinationsArgs.COURSE_ID_ARG) {
                     type = NavType.IntType
-                    nullable = true
                 })
             ) { entry ->
                 val courseId = entry.arguments?.getInt(CoursesAppDestinationsArgs.COURSE_ID_ARG)

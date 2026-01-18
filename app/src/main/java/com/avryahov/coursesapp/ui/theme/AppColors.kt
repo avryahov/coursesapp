@@ -22,4 +22,7 @@ object AppColors {
     // Social Networks
     val VK = Color(0xFF4687F0)
     val OK = Color(0xFFFF6F00)
+
+    // Card
+    val BlockBackground = Color(0xFF24252A)
 }

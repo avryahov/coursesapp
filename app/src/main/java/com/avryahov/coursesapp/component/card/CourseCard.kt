@@ -8,9 +8,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.avryahov.coursesapp.data.model.Course
+import com.avryahov.coursesapp.ui.theme.AppColors
 
 @Composable
 fun CourseCard(
@@ -23,7 +23,7 @@ fun CourseCard(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
-            .background(Color.Black)
+            .background(AppColors.BlockBackground)
             .padding(12.dp)
     ) {
         TopSection(course = course) {
